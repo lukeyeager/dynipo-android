@@ -4,9 +4,9 @@
     tools:context="com.dynipo.andoid.ServerListActivity" >
 
     <item
-        android:id="@+id/action_new"
+        android:id="@+id/action_add"
         android:icon="@drawable/ic_action_new"
-        android:title="@string/action_new"
-        app:showAsAction="ifRoom" />"
+        android:title="@string/action_add"
+        app:showAsAction="ifRoom" />
 
 </menu>

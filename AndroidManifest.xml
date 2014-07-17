@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddServerActivity"
+            android:label="@string/title_activity_add_server"
+            android:parentActivityName=".ServerListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dynipo.andoid.ServerListActivity" />
+        </activity>
     </application>
 
 </manifest>

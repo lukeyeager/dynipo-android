@@ -3,8 +3,13 @@
 
     <string name="app_name">Dynamic IP Otter</string>
     
-    <string name="action_new">Add Server</string>
+    <!-- ServerListActivity -->
+    <string name="action_add">Add Server</string>
     
-    <string name="hello_world">Hello world!</string>
+    <!-- AddServerActivity -->
+    <string name="title_activity_add_server">Add Server</string>
+    <string name="server_name_hint">Name</string>
+    <string name="server_password_hint">Password</string>
+    <string name="add_server_button">Add</string>
 
 </resources>
