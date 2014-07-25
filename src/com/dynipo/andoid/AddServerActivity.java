@@ -1,18 +1,26 @@
 package com.dynipo.andoid;
 
-import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.dynipo.andoid.ServerReaderDbHelper.ServerEntry;
 
 public class AddServerActivity extends ActionBarActivity {
+
+	private ServerReaderDbHelper dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_server);
+		
+		dbHelper = new ServerReaderDbHelper(this.getApplicationContext());
 	}
 
 	@Override
@@ -31,7 +39,26 @@ public class AddServerActivity extends ActionBarActivity {
 	}
 	
 	/** Called when the user clicks the Add button */
-	public void sendMessage(View view) {
-		// TODO
+	public void addServer(View view) {
+		// Gets the data repository in write mode
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		TextView serverNameView = (TextView) findViewById(R.id.server_name);
+		TextView serverPasswordView = (TextView) findViewById(R.id.server_password);
+		
+		String serverName = serverNameView.getText().toString();
+		String serverPassword = (String) serverPasswordView.getText().toString();
+
+		// Create a new map of values, where column names are the keys
+		ContentValues values = new ContentValues();
+		values.put(ServerEntry.COLUMN_NAME_NAME, serverName);
+		values.put(ServerEntry.COLUMN_NAME_PASSWORD, serverPassword);
+
+		db.insert(
+				ServerEntry.TABLE_NAME,
+				null,
+				values);
+		
+		// TODO: Close this activity
 	}
 }
