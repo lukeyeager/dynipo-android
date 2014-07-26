@@ -30,6 +30,7 @@
     </LinearLayout>
     
     <TextView
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:paddingTop="10sp"
@@ -37,6 +38,30 @@
         android:textSize="15sp"
         android:id="@+id/server_list_item_ipaddress"
 		android:hint="@string/server_list_item_ipaddress_hint"
+        />
+    
+    <TextView
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingTop="10sp"
+        android:layout_weight="0"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:id="@+id/server_list_item_loading"
+		android:hint="@string/server_list_item_loading"
+        />
+    
+    <TextView
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingTop="10sp"
+        android:layout_weight="0"
+        android:textSize="15sp"
+        android:textColorHint="#f00"
+        android:id="@+id/server_list_item_error"
+		android:hint="@string/server_list_item_error"
         />
     
 </LinearLayout>
