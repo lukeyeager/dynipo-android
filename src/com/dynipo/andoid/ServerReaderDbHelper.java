@@ -7,7 +7,11 @@ import android.provider.BaseColumns;
 
 public class ServerReaderDbHelper extends SQLiteOpenHelper {
 
-    /* Inner class that defines the table contents */
+	// If you change the database schema, you must increment the database version.
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "ServerReader.db";
+    
+    // Inner class that defines the table contents
     public static abstract class ServerEntry implements BaseColumns {
         public static final String TABLE_NAME = "servers";
         public static final String COLUMN_NAME_NAME = "name";
@@ -22,11 +26,6 @@ public class ServerReaderDbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_ENTRIES =
     		"DROP TABLE IF EXISTS " + ServerEntry.TABLE_NAME;
-    
-    
-	// If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "ServerReader.db";
 
     public ServerReaderDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

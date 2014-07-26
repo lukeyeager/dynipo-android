@@ -5,6 +5,9 @@
     
     <!-- ServerListActivity -->
     <string name="action_add">Add Server</string>
+    <string name="server_list_item_name_hint">sever-name</string>
+    <string name="server_list_item_password_hint"></string>
+    <string name="server_list_item_ipaddress_hint">0.0.0.0</string>
     
     <!-- AddServerActivity -->
     <string name="title_activity_add_server">Add Server</string>

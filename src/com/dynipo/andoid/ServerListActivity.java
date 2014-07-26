@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dynipo.andoid.ServerListAdapter.ServerListItem;
 import com.dynipo.andoid.ServerReaderDbHelper.ServerEntry;
 
 public class ServerListActivity extends ActionBarActivity {
@@ -42,7 +42,7 @@ public class ServerListActivity extends ActionBarActivity {
 	private void loadServerList() {
 		ListView serverListView = (ListView) findViewById(R.id.server_list);
 		serverListView.removeAllViewsInLayout();
-		
+		/*
 		serverListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -51,7 +51,7 @@ public class ServerListActivity extends ActionBarActivity {
 				
 			}
 		});
-		
+		*/
 		serverListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
@@ -62,7 +62,7 @@ public class ServerListActivity extends ActionBarActivity {
 				// Define 'where' part of query.
 				String selection = ServerEntry.COLUMN_NAME_NAME + " = ?";
 				// Specify arguments in placeholder order.
-				String[] selectionArgs = { ((TextView)view).getText().toString() };
+				String[] selectionArgs = { ((TextView)((LinearLayout)view).findViewById(R.id.server_list_item_name)).getText().toString() };
 				// Issue SQL statement.
 				db.delete(ServerEntry.TABLE_NAME, selection, selectionArgs);
 				
@@ -93,7 +93,7 @@ public class ServerListActivity extends ActionBarActivity {
 				sortOrder		// The sort order
 				);
 		
-		String serverNames[] = new String[cursor.getCount()];
+		ServerListItem servers[] = new ServerListItem[cursor.getCount()];
 		int i = 0;
 		while (cursor.moveToNext())
 		{
@@ -103,13 +103,11 @@ public class ServerListActivity extends ActionBarActivity {
 			String serverPassword = cursor.getString(
 					cursor.getColumnIndexOrThrow(ServerEntry.COLUMN_NAME_PASSWORD)
 					);
-			serverNames[i] = serverName;
+			servers[i] = new ServerListItem(serverName, serverPassword, null);
 			i++;
 		}
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				R.layout.server_list_item, serverNames);
-		
+		ServerListAdapter adapter = new ServerListAdapter(this, servers);
 		serverListView.setAdapter(adapter);
 	}
 

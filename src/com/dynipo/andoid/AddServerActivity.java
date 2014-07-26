@@ -59,6 +59,6 @@ public class AddServerActivity extends ActionBarActivity {
 				null,
 				values);
 		
-		// TODO: Close this activity
+		this.finish();
 	}
 }
